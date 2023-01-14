@@ -1,0 +1,74 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="fix.js"></script>
+
+        <link rel="stylesheet" href="style.css">
+
+
+
+
+
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    </head>
+
+    <body>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+        <div class="jumbotron text-center">
+            <h1>
+                Welcome to the Location Checker
+            </h1>
+        </div>
+        <div>
+            <p>Please type your video file path:</p>
+            
+        </div>
+        <div>
+            <!-- <form action="http:192.168.12.253:5000/GetVideoPath/" method="post"> -->
+                <div>
+                    <p>Please type your video file path: inside form</p>
+                    <input type="file" name="filepath" id="filePath" accecpt="video/*">
+                    <input type="submit" value="Upload" onclick="upload_video()">
+                </div>
+                <label for="videolength">Video Length:</label>
+                <select name="framerates" id="framerate" onfocus='this.size=3;' onblur='this.size=0;' onchange='this.size=1; this.blur();'></select>
+                    <option value="short">&lt; 10 min</optiopn>
+                    <option value="long">&gt; 10 min</option>
+                </select>
+            <!-- </form> -->
+        </div>
+        <script>
+            function Framerate(){
+                // var useroptions = document.getElementById("framerate");
+                // var selectedvalue = useroptions[useroptions.selectedIndex].value;
+
+                // if(selectedvalue == "short"){
+                //     var videolength = "short";
+                // } else if(selectedvalue == "long"){
+                //     var videolength = "long";
+                // }
+                var videolength = "short";
+                const request = new XMLHttpRequest();
+                request.open('POST', `/ProcessVideolength/${JSON.stringify(videolength)}`);
+                request.send();
+            }
+        </script>
+        <div id="loadingGIF" class="container"></div>
+        <div id="googleMap" style="width:1000px;height:500px;" class = "container"></div>
+        <table class="Legend align-items-center">
+            <tr>
+                <th class="col-sm-6">Marker</th>
+                <th class="col-sm-6">Location</th>
+            </tr>
+
+            <tbody id="table_content">
+
+            </tbody>
+        </table>
+        <button class="findLocationButton" onclick="Framerate(); getresult();">Find Locations</button>
+        <div id = "result"></div>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKVsr5DRS9ZPhpHaJ3I-8YJR8VyZTDmXU&callback=myMap"></script>
+    </body>
+</html>
