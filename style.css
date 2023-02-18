@@ -1,0 +1,68 @@
+input[type=text]{
+    width: 600px;
+}
+
+/* option:hover{
+    background-color: grey;
+}
+
+select{
+    width:200px;
+} */
+h1 {
+    background-color: slategrey;
+    color:aliceblue;
+}
+
+
+.findLocationButton{
+    width: 10%;
+    height: 5%;
+    border-radius: 10px;
+}
+@media screen and (max-width: 1180px){
+    .findLocationButton{
+        font-size:10px;
+    }
+}
+
+@media screen and (max-width: 900px){
+    .findLocationButton{
+        width: 75px;
+        height: 40px;
+    }
+}
+
+#loader {
+    visibility:hidden;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid gray;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 1s linear infinite; /* Safari */
+    animation: spin 4s linear infinite;
+  }
+  
+  /* Safari */
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  #redo {
+    border: none;
+    background-color: white;
+    visibility: hidden;
+    color:blue;
+  }
+
+  #redoContainer {
+    display: flex;
+    flex-direction: row;
+  }
