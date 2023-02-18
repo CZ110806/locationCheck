@@ -22,21 +22,12 @@
             </h1>
         </div>
         <div>
-            <p>Please type your video file path:</p>
-            
-        </div>
-        <div>
             <!-- <form action="http:192.168.12.253:5000/GetVideoPath/" method="post"> -->
                 <div>
-                    <p>Please type your video file path: inside form</p>
+                    <p>Please upload your video:</p>
                     <input type="file" name="filepath" id="filePath" accecpt="video/*">
                     <input type="submit" value="Upload" onclick="upload_video()">
                 </div>
-                <label for="videolength">Video Length:</label>
-                <select name="framerates" id="framerate" onfocus='this.size=3;' onblur='this.size=0;' onchange='this.size=1; this.blur();'></select>
-                    <option value="short">&lt; 10 min</optiopn>
-                    <option value="long">&gt; 10 min</option>
-                </select>
             <!-- </form> -->
         </div>
         <script>
@@ -49,13 +40,9 @@
                 // } else if(selectedvalue == "long"){
                 //     var videolength = "long";
                 // }
-                var videolength = "short";
-                const request = new XMLHttpRequest();
-                request.open('POST', `/ProcessVideolength/${JSON.stringify(videolength)}`);
-                request.send();
             }
         </script>
-        <div id="loadingGIF" class="container"></div>
+        <div id="loader" class = "container"></div>
         <div id="googleMap" style="width:1000px;height:500px;" class = "container"></div>
         <table class="Legend align-items-center">
             <tr>
@@ -68,7 +55,11 @@
             </tbody>
         </table>
         <button class="findLocationButton" onclick="Framerate(); getresult();">Find Locations</button>
-        <div id = "result"></div>
+        
+        <div id="redoContainer">
+            <div id = "result"></div> <button class="refreshButton" id="redo" onclick="Framerate(); getresult();">Redo with a different framerate</button>
+        </div>
+       
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKVsr5DRS9ZPhpHaJ3I-8YJR8VyZTDmXU&callback=myMap"></script>
     </body>
 </html>
