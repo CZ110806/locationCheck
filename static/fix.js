@@ -73,7 +73,8 @@ function getresult(){
                     label: count.toString(),
                     map: map,
                 });
-                legend.push({'mark': count, 'location': key});
+	        map.setCenter(marker.getPosition());
+		legend.push({'mark': count, 'location': key});
             }
             buildtable(legend);
             legend = [];
