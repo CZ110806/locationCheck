@@ -22,17 +22,18 @@ import gmaps
 Videopath = ""
 framerate = "short"
 
+
 def save_frames(video_path, VideoLength):
     fps = 1
     # duration = video_path.get(cv2.CAP_PROP_POS_MSEC)
     cap = cv2.VideoCapture(video_path)
     print(cap)
 
-    #Calculting in seconds
+    # Calculting in seconds
     fps = cap.get(cv2.CAP_PROP_FPS)
     totalFrames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
     durationInSeconds = round(totalFrames / fps)
-    
+
     #  totalFrames = int(cap.get(cv2.CAP_PROP_FPS))
     print(totalFrames)
     cap.set(cv2.CAP_PROP_FPS, 1)
@@ -164,7 +165,7 @@ def find_location(video_path, VideoLength):
             for key in loc:
                 value = loc[key]
                 result[key] = value
-    
+
     delete_frames()
     return result
 
