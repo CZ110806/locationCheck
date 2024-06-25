@@ -44,8 +44,8 @@ function getresult(){
     var redo = document.getElementById("redo")
     redo.style.visibility = "hidden"
     document.getElementById("googleMap").style.visibility = "hidden"
-    var load = document.getElementById("loader")
-    load.style.visibility = "visible"
+    // var load = document.getElementById("loader")
+    // load.style.visibility = "visible"
     $.ajax({
         url:"/result/" + vid1, 
         success:function(result){
@@ -55,7 +55,7 @@ function getresult(){
                 center:new google.maps.LatLng(51.508742,-0.120850),
                 zoom:5,
                 };
-            load.style.visibility = "hidden"
+            // load.style.visibility = "hidden"
             var map = new google.maps.Map(document.getElementById("googleMap"),mapProp); 
             document.getElementById("googleMap").style.visibility = "visible"
             const uluru = {lat: -25.344, lng: 131.031};

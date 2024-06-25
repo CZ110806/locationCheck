@@ -1,4 +1,4 @@
-input[type=text]{
+input[type=text] {
     width: 600px;
 }
 
@@ -9,31 +9,106 @@ input[type=text]{
 select{
     width:200px;
 } */
-h1 {
-    background-color: slategrey;
-    color:aliceblue;
+
+.jumbotron-custom {
+    background: linear-gradient(135deg, #c850c0, #4158d0);
+    font: 700 100px "Comic Sans MS";
+    color: white;
+    text-shadow: 0 0 0px #fdec84,
+    0px 0px 0px #ffae35,
+    0px 0px 0px #ec760c,
+    0px 0px px #cd4607,
+    0px 0px 0px #973717,
+    0px 0px 0px #451b0e;
+    padding: 50px 20px;
+    text-align: center;
 }
 
-.findLocationButton{
+h1 {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.fileArea p {
+    text-align: center;
+    font-size: 25px;
+    font-family: "Comic Sans MS";
+    margin: 30px 0 30px 0;
+}
+
+.fileAreaButton {
+    margin: 0 auto 30px auto;
+    background: rgba(237, 240, 240, 0.4);
+    border-radius: 10px;
+    width: 500px;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.fileAreaButton input[type="file"]::file-selector-button {
+    font-weight: 500;
+    color: #fff;
+    background: linear-gradient(135deg, #c850c0, #4158d0);
+    border-color: #409eff;
+    border: #398bff;
+    height: 30px;
+    border-radius: 5px;
+    margin-top: 15px;
+    font-family: "Comic Sans MS";
+    cursor: pointer;
+}
+
+.fileAreaButton input[type="submit"] {
+    font-weight: 500;
+    color: #fff;
+    background: linear-gradient(135deg, #c850c0, #4158d0);
+    border-color: #409eff;
+    border: #398bff;
+    height: 30px;
+    border-radius: 5px;
+    font-family: "Comic Sans MS";
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.findArea {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.findLocationButton {
     width: 10%;
     height: 5%;
     border-radius: 10px;
+    background: linear-gradient(135deg, #c850c0, #4158d0);
+    color: #ffffff;
+    border-color: #409eff;
+    border: #398bff;
+    height: 30px;
+    border-radius: 5px;
+    font-family: "Comic Sans MS";
 }
-@media screen and (max-width: 1180px){
-    .findLocationButton{
-        font-size:10px;
+
+@media screen and (max-width: 1180px) {
+    .findLocationButton {
+        font-size: 10px;
     }
 }
 
-@media screen and (max-width: 900px){
-    .findLocationButton{
+@media screen and (max-width: 900px) {
+    .findLocationButton {
         width: 75px;
         height: 40px;
     }
 }
 
 #loader {
-    visibility:hidden;
+    visibility: hidden;
     border: 16px solid #f3f3f3;
     border-radius: 50%;
     border-top: 16px solid gray;
@@ -41,27 +116,42 @@ h1 {
     height: 120px;
     -webkit-animation: spin 1s linear infinite; /* Safari */
     animation: spin 4s linear infinite;
-  }
-  
-  /* Safari */
-  @-webkit-keyframes spin {
-    0% { -webkit-transform: rotate(0deg); }
-    100% { -webkit-transform: rotate(360deg); }
-  }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
+}
 
-  #redo {
+/* Safari */
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.resultArea {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#redo {
     border: none;
     background-color: white;
     visibility: hidden;
-    color:blue;
-  }
+    color: blue;
+}
 
-  #redoContainer {
+#redoContainer {
     display: flex;
     flex-direction: row;
-  }
+}
