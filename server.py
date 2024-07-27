@@ -1,11 +1,23 @@
 from flask import Flask, request, jsonify, flash, redirect
 from werkzeug.utils import secure_filename
 from flask_cors import CORS
+import logging
+from logging.handlers import RotatingFileHandler
 app = Flask(__name__, static_url_path="", static_folder='static')
 CORS(app)
 UPLOAD_FOLDER = "static/uploads"
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+# 设置日志记录
+if not os.path.exists('logs'):
+    os.mkdir('logs')
+file_handler = RotatingFileHandler('logs/app.log', maxBytes=10240, backupCount=10)
+file_handler.setFormatter(logging.Formatter('%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]'))
+file_handler.setLevel(logging.INFO)
+app.logger.addHandler(file_handler)
+
+app.logger.setLevel(logging.INFO)
+app.logger.info('Server startup')
 
 # test
 @app.route('/')
@@ -153,23 +165,27 @@ def delete_frames():
 
 
 def find_location(video_path, VideoLength):
-    print(video_path)
-    delete_frames()
-    result = {}
-    save_frames(video_path, VideoLength)
-    directory = os.fsencode("frames")
-    images = os.listdir(directory)
-    gap = 10
+    try:
+        app.logger.info(f"Processing video: {video_path}")
+        delete_frames()
+        result = {}
+        save_frames(video_path, VideoLength)
+        directory = os.fsencode("frames")
+        images = os.listdir(directory)
+        gap = 10
 
-    for i in range(0, len(images), gap):
-        loc = find_image(f"frames/{os.fsdecode(images[i])}")
-        if loc:
-            for key in loc:
-                value = loc[key]
-                result[key] = value
+        for i in range(0, len(images), gap):
+            loc = find_image(f"frames/{os.fsdecode(images[i])}")
+            if loc:
+                for key, value in loc.items():
+                    result[key] = value
 
-    delete_frames()
-    return result
+        delete_frames()
+        return result
+    except Exception as e:
+        app.logger.error(f"Error finding location: {e}")
+        return {"error": "Internal Server Error"}
+
 
 
 @app.route('/GetVideoPath/<path>', methods=['GET', 'POST'])
@@ -219,6 +235,17 @@ def upload():
         file.save(f'static/uploads/{filename}')
 
     return filename
+
+@app.errorhandler(500)
+def internal_error(error):
+    app.logger.error('Server Error: %s', (error))
+    return jsonify({"error": "Internal Server Error"}), 500
+
+@app.errorhandler(Exception)
+def unhandled_exception(e):
+    app.logger.error('Unhandled Exception: %s', (e))
+    return jsonify({"error": "Internal Server Error"}), 500
+
 
 
 if __name__ == "__main__":
