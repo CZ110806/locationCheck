@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify, flash, redirect
 from werkzeug.utils import secure_filename
 from flask_cors import CORS
+import os
 import logging
 from logging.handlers import RotatingFileHandler
 app = Flask(__name__, static_url_path="", static_folder='static')
