@@ -1,11 +1,13 @@
 from flask import Flask, request, jsonify, flash, redirect
 from werkzeug.utils import secure_filename
-
+from flask_cors import CORS
 app = Flask(__name__, static_url_path="", static_folder='static')
+CORS(app)
 UPLOAD_FOLDER = "static/uploads"
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
+# test
 @app.route('/')
 def home():
     return app.send_static_file('index.html')
